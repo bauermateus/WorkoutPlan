@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "744813786967",
+    "project_id": "workout-plan-a7432",
+    "storage_bucket": "workout-plan-a7432.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:744813786967:android:8687963d5cb4203381b012",
+        "android_client_info": {
+          "package_name": "com.mbs.workoutplan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcf2mnMVpUdKShDrmDNANSZdGUDCvxvOg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
