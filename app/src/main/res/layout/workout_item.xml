@@ -32,7 +32,7 @@
             style="@style/Poppins.12sp.Regular"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:lines="3"
+            android:maxLines="5"
             android:ellipsize="end"
             android:layout_marginTop="8dp"
             android:text="Description"

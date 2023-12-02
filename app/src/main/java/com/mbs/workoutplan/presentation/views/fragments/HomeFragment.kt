@@ -1,4 +1,4 @@
-package com.mbs.workoutplan.presentation.fragments
+package com.mbs.workoutplan.presentation.views.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -1,4 +1,4 @@
-package com.mbs.workoutplan.presentation.activities
+package com.mbs.workoutplan.presentation.views.activities
 
 import android.os.Bundle
 import android.view.View

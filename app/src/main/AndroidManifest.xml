@@ -3,7 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.mbs.workoutplan">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
+        android:name=".application.WorkoutPlanApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -14,7 +17,7 @@
         android:theme="@style/Theme.WorkoutPlan"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.activities.MainActivity"
+            android:name=".presentation.views.activities.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,6 +25,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".presentation.views.activities.MainActivity"
+            android:exported="false"/>
     </application>
 
 </manifest>

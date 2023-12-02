@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText"
+    tools:context=".presentation.views.fragments.LoginFragment">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/app_name"
+            style="@style/App.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:text="Workout Plan"
+            android:textSize="38sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/email_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="36dp"
+            android:gravity="start"
+            android:text="E-mail"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/app_name" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/email_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            app:boxStrokeColor="@color/primary"
+            app:boxStrokeWidth="1dp"
+            app:boxStrokeWidthFocused="2dp"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email_text"
+            app:startIconDrawable="@drawable/ic_people"
+            app:startIconTint="@color/primary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:hint="mail@email.com"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/white"
+                android:textColorHint="@color/gray"
+                android:textSize="14sp"
+                tools:ignore="SpeakableTextPresentCheck,TextContrastCheck,VisualLintTextFieldSize" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/password_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginTop="16dp"
+            android:gravity="start"
+            android:text="Senha"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@+id/email_layout"
+            app:layout_constraintTop_toBottomOf="@+id/email_layout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/password_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:boxStrokeColor="@color/primary"
+            app:boxStrokeWidth="1dp"
+            app:boxStrokeWidthFocused="2dp"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="@+id/email_layout"
+            app:layout_constraintStart_toStartOf="@+id/email_layout"
+            app:layout_constraintTop_toBottomOf="@id/password_text"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/primary"
+            app:startIconDrawable="@drawable/ic_lock"
+            app:startIconTint="@color/primary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:hint="**********"
+                android:inputType="textPassword"
+                android:textColor="@color/white"
+                android:textColorHint="@color/gray"
+                android:textSize="14sp"
+                tools:ignore="SpeakableTextPresentCheck,TextContrastCheck,VisualLintTextFieldSize" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/login_button"
+            style="@style/Material.Button.Standard"
+            android:backgroundTint="@color/primary"
+            android:text="Entrar"
+            android:layout_marginTop="28dp"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/password_layout"
+            app:layout_constraintStart_toStartOf="@+id/password_layout"
+            app:layout_constraintTop_toBottomOf="@+id/password_layout"
+            tools:ignore="VisualLintButtonSize" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
