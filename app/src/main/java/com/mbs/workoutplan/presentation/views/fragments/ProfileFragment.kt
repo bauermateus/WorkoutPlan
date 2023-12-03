@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.mbs.workoutplan.databinding.FragmentProfileBinding
 import com.mbs.workoutplan.presentation.viewmodels.UserInfoViewModel
-import com.mbs.workoutplan.util.toast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProfileFragment : Fragment() {
@@ -27,7 +26,7 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.uiState.observe(viewLifecycleOwner) {
-            toast(it)
+
         }
     }
 

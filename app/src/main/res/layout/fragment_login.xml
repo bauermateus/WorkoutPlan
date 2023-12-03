@@ -58,6 +58,7 @@
                 android:textColor="@color/white"
                 android:textColorHint="@color/gray"
                 android:textSize="14sp"
+                android:singleLine="true"
                 tools:ignore="SpeakableTextPresentCheck,TextContrastCheck,VisualLintTextFieldSize" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -95,6 +96,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:hint="**********"
+                android:singleLine="true"
                 android:inputType="textPassword"
                 android:textColor="@color/white"
                 android:textColorHint="@color/gray"

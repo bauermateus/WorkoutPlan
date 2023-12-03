@@ -9,10 +9,19 @@
         android:id="@+id/homeFragment"
         android:name="com.mbs.workoutplan.presentation.views.fragments.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_createWorkoutFragment"
+            app:destination="@id/createWorkoutFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.mbs.workoutplan.presentation.views.fragments.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/createWorkoutFragment"
+        android:name="com.mbs.workoutplan.presentation.views.fragments.CreateWorkoutFragment"
+        android:label="fragment_create_workout"
+        tools:layout="@layout/fragment_create_workout" />
 </navigation>
