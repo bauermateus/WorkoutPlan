@@ -7,7 +7,7 @@ import com.mbs.workoutplan.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
-class WorkoutPlanApp: Application() {
+class WorkoutPlanApp : Application() {
 
     override fun onCreate() {
         super.onCreate()

@@ -12,20 +12,20 @@ class AuthSignInRepositoryImpl() : AuthSignInRepository {
         return suspendCoroutine { continuation ->
             Firebase.auth.signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener { result ->
-                continuation.resume(
-                    SignInResult(
-                        success = result.user != null,
-                        error = null
+                    continuation.resume(
+                        SignInResult(
+                            success = result.user != null,
+                            error = null
+                        )
                     )
-                )
-            }.addOnFailureListener { exception ->
-                continuation.resume(
-                    SignInResult(
-                        success = false,
-                        error = exception
+                }.addOnFailureListener { exception ->
+                    continuation.resume(
+                        SignInResult(
+                            success = false,
+                            error = exception
+                        )
                     )
-                )
-            }
+                }
         }
     }
 }

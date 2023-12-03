@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 
 class LoginViewModel(
     private val signInWithEmailAndPasswordUseCase: SignInWithEmailAndPasswordUseCase
-): ViewModel() {
+) : ViewModel() {
 
     private val _uiState = MutableStateFlow(LoginUiState())
     val uiState = _uiState.asLiveData()
@@ -24,7 +24,8 @@ class LoginViewModel(
     fun validateEmail(email: String) {
         _uiState.update {
             it.copy(
-                isEmailFilledCorrectly = android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+                isEmailFilledCorrectly = android.util.Patterns.EMAIL_ADDRESS.matcher(email)
+                    .matches()
             )
         }
     }
