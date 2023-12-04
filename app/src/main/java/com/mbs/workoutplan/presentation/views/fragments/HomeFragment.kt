@@ -4,9 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.mbs.workoutplan.data.db.models.Workout
+import com.mbs.workoutplan.data.db.models.WorkoutDTO
 import com.mbs.workoutplan.databinding.FragmentHomeBinding
 import com.mbs.workoutplan.presentation.event.HomeEvent
 import com.mbs.workoutplan.presentation.viewmodels.HomeViewModel
@@ -21,7 +22,7 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by viewModel()
 
     private val workoutsAdapter by lazy {
-        WorkoutAdapter(::onWorkoutClick)
+        WorkoutAdapter(::onWorkoutClick, ::onWorkoutDelete)
     }
 
     override fun onCreateView(
@@ -39,6 +40,12 @@ class HomeFragment : Fragment() {
         setup()
     }
 
+    override fun onResume() {
+        super.onResume()
+        binding.emptyListText.isVisible = false
+        viewModel.getUserWorkouts()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -46,7 +53,10 @@ class HomeFragment : Fragment() {
 
     private fun observe() {
         viewModel.uiState.observe(viewLifecycleOwner) { state ->
-            state.workouts?.let { workoutsAdapter.submitList(state.workouts) }
+            binding.emptyListText.isVisible = state?.workouts.isNullOrEmpty()
+            state.workouts?.let {
+                workoutsAdapter.submitList(it)
+            }
             state.event?.let { processEvents(it) }
         }
     }
@@ -66,12 +76,32 @@ class HomeFragment : Fragment() {
         when (event) {
             is HomeEvent.Error -> {
                 toast(event.msg)
+                binding.pb.isVisible = false
             }
+
+            is HomeEvent.Success -> {
+                binding.pb.isVisible = false
+            }
+
+            is HomeEvent.Deleted -> {
+                toast("Treino removido.")
+                viewModel.getUserWorkouts()
+            }
+        }
+        viewModel.clearEvents()
+    }
+
+    private fun onWorkoutClick(workout: WorkoutDTO) {
+        workout.identifier?.let {
+            findNavController().navigate(
+                HomeFragmentDirections
+                    .actionHomeFragmentToWorkoutDetailsFragment(it)
+            )
         }
     }
 
-    private fun onWorkoutClick(workout: Workout) {
-        //
+    private fun onWorkoutDelete(id: String) {
+        viewModel.deleteWorkout(id)
     }
 
     private fun setup() {

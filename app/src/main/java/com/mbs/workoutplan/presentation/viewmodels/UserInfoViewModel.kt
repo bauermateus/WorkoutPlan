@@ -15,14 +15,12 @@ class UserInfoViewModel(
     private val getUserInfoUseCase: GetUserInfoUseCase
 ) : ViewModel() {
 
-    init {
-        getUserInfo()
-    }
-
     private val _uiState = MutableStateFlow(ProfileUiState())
     val uiState = _uiState.asLiveData()
 
-    private fun getUserInfo() {
+    val currentUiState get() = _uiState.value
+
+    fun getUserInfo() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val response = getUserInfoUseCase.invoke()

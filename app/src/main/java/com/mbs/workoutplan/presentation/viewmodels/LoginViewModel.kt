@@ -41,21 +41,24 @@ class LoginViewModel(
     fun signInWithEmailAndPassword(email: String, password: String) {
         viewModelScope.launch(Dispatchers.IO) {
             _loadingState.update { true }
-            val result = signInWithEmailAndPasswordUseCase.invoke(email, password)
-            if (result.success) {
+            try {
+                val result = signInWithEmailAndPasswordUseCase.invoke(email, password)
+                if (result) {
+                    _uiState.update {
+                        it.copy(
+                            event = LoginEvent.Success
+                        )
+                    }
+                }
+            } catch (e: Exception) {
                 _uiState.update {
                     it.copy(
-                        event = LoginEvent.Success
+                        event = LoginEvent.Error(e.message.toString())
                     )
                 }
-            } else {
-                _uiState.update {
-                    it.copy(
-                        event = LoginEvent.Error(result.error?.message.toString())
-                    )
-                }
-            }
+            } finally {
             _loadingState.update { false }
+            }
         }
     }
 

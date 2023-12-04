@@ -4,6 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class ExercisesList(
-    val exercises: ArrayList<Exercise>? = null
+data class UserDataDTO(
+    val name: String? = null,
+    val image: String? = null
 ) : Parcelable

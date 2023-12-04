@@ -11,6 +11,8 @@
         <item name="android:windowLightNavigationBar" tools:targetApi="27">false</item>
     </style>
 
+    <style name="AlertStyle" parent="ThemeOverlay.Material3.MaterialAlertDialog.Centered"/>
+
     <style name="Material.Button.Standard" parent="ThemeOverlay.Material3.Button">
         <item name="backgroundTint">@color/primary</item>
         <item name="android:textSize">18sp</item>

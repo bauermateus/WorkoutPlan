@@ -6,8 +6,7 @@
     tools:ignore="HardcodedText, TextContrastCheck"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.views.fragments.CreateWorkoutFragment">
-
+    tools:context=".presentation.views.fragments.NewExerciseFragment">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
@@ -23,9 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Novo treino"
-            android:maxLength="30"
-            android:ellipsize="end"
+            android:text="Novo exercício"
             android:textAllCaps="true"
             tools:ignore="HardcodedText" />
 
@@ -37,7 +34,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="32dp">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_name"
@@ -77,41 +75,77 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/text_description"
+                android:id="@+id/text_obs"
                 style="@style/Poppins.Light"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="Descrição"
+                android:text="Observações"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/input_name"
                 app:layout_constraintTop_toBottomOf="@id/input_name" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/input_description"
-                app:boxStrokeColor="@color/primary"
-                app:boxStrokeWidth="1dp"
-                app:boxStrokeWidthFocused="2dp"
-                app:hintEnabled="false"
+                android:id="@+id/input_obs"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:textColorHint="@color/gray"
+                app:boxStrokeColor="@color/primary"
+                app:boxStrokeWidth="1dp"
+                app:boxStrokeWidthFocused="2dp"
+                app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_description">
+                app:layout_constraintTop_toBottomOf="@+id/text_obs">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/description"
+                    android:id="@+id/obs"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
+                    android:gravity="top"
                     android:hint="Descrição..."
                     android:inputType="textMultiLine"
-                    android:gravity="top"
-                    android:textColorHint="@color/gray"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/gray" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_img"
+                style="@style/Poppins.Light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Escolha uma imagem"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/input_name"
+                app:layout_constraintTop_toBottomOf="@+id/input_obs" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/img"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="8dp"
+                android:src="@color/dark_grey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_img"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize6" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/edit_photo_button"
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:background="@color/primary"
+                android:foreground="?android:selectableItemBackground"
+                android:scaleType="centerInside"
+                android:src="@drawable/edit_pic_ic"
+                app:layout_constraintBottom_toBottomOf="@+id/img"
+                app:layout_constraintEnd_toEndOf="@+id/img"
+                app:layout_constraintStart_toEndOf="@+id/img"
+                app:layout_constraintTop_toBottomOf="@+id/img"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/confirm_button"
@@ -121,9 +155,9 @@
                 android:layout_marginTop="80dp"
                 android:text="CONFIRMAR"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/input_description"
-                app:layout_constraintStart_toStartOf="@+id/input_description"
-                app:layout_constraintTop_toBottomOf="@+id/input_description" />
+                app:layout_constraintEnd_toEndOf="@+id/input_obs"
+                app:layout_constraintStart_toStartOf="@+id/input_obs"
+                app:layout_constraintTop_toBottomOf="@+id/img" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

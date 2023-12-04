@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.mbs.workoutplan.data.db.models.Workout
+import com.mbs.workoutplan.data.db.models.WorkoutDTO
 import com.mbs.workoutplan.databinding.FragmentCreateWorkoutBinding
+import com.mbs.workoutplan.presentation.event.CreateWorkoutEvent
 import com.mbs.workoutplan.presentation.viewmodels.CreateWorkoutViewModel
+import com.mbs.workoutplan.util.initLoading
 import com.mbs.workoutplan.util.toast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -16,6 +18,9 @@ class CreateWorkoutFragment : Fragment() {
     private var _binding: FragmentCreateWorkoutBinding? = null
     private val binding get() = _binding!!
     private val viewModel: CreateWorkoutViewModel by viewModel()
+    private val loading by lazy {
+        initLoading(binding.root)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,9 +43,29 @@ class CreateWorkoutFragment : Fragment() {
     }
 
     private fun observe() {
-        viewModel.uiState.observe(viewLifecycleOwner) {
-
+        viewModel.uiState.observe(viewLifecycleOwner) { state ->
+            state.event?.let { processEvents(it) }
         }
+        viewModel.loadingState.observe(viewLifecycleOwner) { isLoading ->
+            if (isLoading) loading.show()
+            else loading.dismiss()
+        }
+    }
+
+    private fun processEvents(event: CreateWorkoutEvent) {
+        when (event) {
+            is CreateWorkoutEvent.Success -> {
+                findNavController().navigate(
+                    CreateWorkoutFragmentDirections
+                        .actionCreateWorkoutFragmentToWorkoutDetailsFragment(event.id)
+                )
+            }
+
+            is CreateWorkoutEvent.Error -> {
+                toast(event.msg)
+            }
+        }
+        viewModel.clearEvents()
     }
 
     private fun onClick() {
@@ -51,9 +76,9 @@ class CreateWorkoutFragment : Fragment() {
                     return@setOnClickListener
                 }
                 viewModel.createWorkout(
-                    Workout(
+                    WorkoutDTO(
                         null,
-                        name.text.toString().toLong(),
+                        name.text.toString(),
                         description.text.toString(),
                         exercises = null
                     )

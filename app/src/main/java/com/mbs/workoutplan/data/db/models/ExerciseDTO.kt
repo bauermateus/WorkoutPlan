@@ -4,8 +4,8 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Exercise(
-    val name: Int? = null,
+data class ExerciseDTO(
+    val name: String? = null,
     val image: String? = null,
     val obs: String? = null
 ) : Parcelable

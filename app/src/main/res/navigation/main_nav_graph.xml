@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
- <navigation xmlns:android="http://schemas.android.com/apk/res/android"
+  <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph.xml"
@@ -12,16 +12,68 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_createWorkoutFragment"
-            app:destination="@id/createWorkoutFragment" />
+            app:destination="@id/createWorkoutFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeFragment_to_workoutDetailsFragment"
+            app:destination="@id/workoutDetailsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.mbs.workoutplan.presentation.views.fragments.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
+    </fragment>
     <fragment
         android:id="@+id/createWorkoutFragment"
         android:name="com.mbs.workoutplan.presentation.views.fragments.CreateWorkoutFragment"
         android:label="fragment_create_workout"
-        tools:layout="@layout/fragment_create_workout" />
+        tools:layout="@layout/fragment_create_workout" >
+        <action
+            android:id="@+id/action_createWorkoutFragment_to_workoutDetailsFragment"
+            app:destination="@id/workoutDetailsFragment"
+            app:popUpTo="@id/homeFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/workoutDetailsFragment"
+        android:name="com.mbs.workoutplan.presentation.views.fragments.WorkoutDetailsFragment"
+        android:label="fragment_workout_details"
+        tools:layout="@layout/fragment_workout_details">
+        <argument
+            android:name="workoutId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_workoutDetailsFragment_to_newExerciseFragment"
+            app:destination="@id/newExerciseFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/newExerciseFragment"
+        android:name="com.mbs.workoutplan.presentation.views.fragments.NewExerciseFragment"
+        android:label="fragment_new_exercise"
+        tools:layout="@layout/fragment_new_exercise" >
+        <argument
+            android:name="workoutId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.mbs.workoutplan.presentation.views.fragments.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" >
+        <argument
+            android:name="userData"
+            app:argType="com.mbs.workoutplan.data.db.models.UserDataDTO" />
+    </fragment>
 </navigation>
